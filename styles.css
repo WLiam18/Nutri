@@ -1,0 +1,1166 @@
+/* Global Styles */
+body {
+  font-family: 'Inter', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f4;
+  color: #000;
+}
+
+h1, h2, h3 {
+  font-family: 'Poppins', sans-serif;
+  font-weight: bold;
+}
+
+a {
+  text-decoration: none;
+  color: #000;
+}
+
+/* Header */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background-color: #fff;
+  border-bottom: 4px solid #000;
+}
+
+.logo-box {
+  padding: 10px 15px;
+  background-color: #4CAF50;
+  border: 4px solid #000;
+  box-shadow: 4px 4px 0 #000;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+  color: #fff;
+}
+
+.nav-link {
+  margin: 0 15px;
+  font-weight: bold;
+  padding: 10px 15px;
+  background-color: #fff;
+  border: 2px solid #000;
+  box-shadow: 4px 4px 0 #000;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.nav-link:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 #000;
+}
+
+/* Hero Section */
+.hero {
+  text-align: center;
+  padding: 100px 20px;
+  background-color: #4CAF50;
+  border-bottom: 4px solid #000;
+  color: #fff;
+}
+
+.hero h1 {
+  font-size: 48px;
+  margin-bottom: 20px;
+}
+
+.hero p {
+  font-size: 18px;
+  margin-bottom: 40px;
+}
+
+.search-scan-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  margin-top: 40px;
+}
+
+/* Search Bar */
+.search-bar {
+  display: flex;
+  align-items: center;
+  background-color: #fff;
+  border: 4px solid #000;
+  box-shadow: 8px 8px 0 #000;
+  padding: 10px;
+  width: 400px;
+  max-width: 100%;
+}
+
+.search-bar input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  padding: 10px;
+}
+
+.search-bar button {
+  background-color: #FFEB3B;
+  border: 4px solid #000;
+  box-shadow: 8px 8px 0 #000;
+  padding: 10px 15px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.search-bar button:hover {
+  transform: translate(-4px, -4px);
+  box-shadow: 12px 12px 0 #000;
+}
+
+.search-bar button i {
+  font-size: 18px;
+}
+
+/* Divider */
+.divider {
+  font-size: 18px;
+  font-weight: bold;
+  color: #000;
+}
+
+/* Scan Button */
+.scan-button {
+  background-color: #FFEB3B;
+  border: 4px solid #000;
+  box-shadow: 8px 8px 0 #000;
+  padding: 15px 30px;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.scan-button:hover {
+  transform: translate(-4px, -4px);
+  box-shadow: 12px 12px 0 #000;
+}
+
+.scan-button i {
+  font-size: 20px;
+}
+/* How It Works Section */
+.how-it-works {
+  padding: 50px 20px;
+  text-align: center;
+  background-color: #fff;
+  border-bottom: 4px solid #000;
+}
+
+.how-it-works h2 {
+  font-size: 36px;
+  margin-bottom: 40px;
+}
+
+.steps {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 30px;
+}
+
+.step {
+  width: 30%;
+  padding: 20px;
+  background-color: #fff;
+  border: 4px solid #000;
+  box-shadow: 8px 8px 0 #000;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.step:hover {
+  transform: translate(-4px, -4px);
+  box-shadow: 12px 12px 0 #000;
+}
+
+.icon {
+  margin-bottom: 20px;
+}
+
+.icon i {
+  color: #4CAF50;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+.animate-fade-in {
+  animation: fadeIn 1.5s ease-in-out;
+}
+
+/* Featured Alternatives Section */
+.alternatives {
+  padding: 50px 20px;
+  text-align: center;
+  background-color: #FFEB3B;
+  border-bottom: 4px solid #000;
+}
+
+.alternatives h2 {
+  font-size: 36px;
+  margin-bottom: 20px;
+}
+
+.alternatives .subtext {
+  font-size: 18px;
+  margin-bottom: 40px;
+}
+
+.marquee {
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.marquee-content {
+  display: inline-block;
+  animation: marquee 15s linear infinite;
+}
+
+@keyframes marquee {
+  0% { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
+}
+
+.card {
+  display: inline-block;
+  width: 200px;
+  margin: 0 20px;
+  padding: 20px;
+  background-color: #fff;
+  border: 4px solid #000;
+  box-shadow: 8px 8px 0 #000;
+  transition: transform 0.2s, box-shadow 0.2s;
+  white-space: normal;
+  text-align: left;
+}
+
+.card:hover {
+  transform: translate(-4px, -4px);
+  box-shadow: 12px 12px 0 #000;
+  border-top: 4px solid #000; /* Fix for top border visibility */
+}
+
+.card h3 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.card p {
+  font-size: 14px;
+  margin: 0;
+}
+
+/* Testimonials Section */
+.testimonials {
+  padding: 50px 20px;
+  text-align: center;
+  background-color: #fff;
+  border-bottom: 4px solid #000;
+}
+
+.testimonials h2 {
+  font-size: 36px;
+  margin-bottom: 40px;
+}
+
+.testimonial-cards {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.testimonial {
+  width: 30%;
+  padding: 20px;
+  background-color: #fff;
+  border: 4px solid #000;
+  box-shadow: 8px 8px 0 #000;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.testimonial:hover {
+  transform: translate(-4px, -4px);
+  box-shadow: 12px 12px 0 #000;
+}
+
+.user-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin-bottom: 20px;
+}
+
+.testimonial p {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.testimonial h4 {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+/* Health Tips Section */
+.health-tips {
+  padding: 50px 20px;
+  text-align: center;
+  background-color: #FFEB3B;
+  border-bottom: 4px solid #000;
+}
+
+.health-tips h2 {
+  font-size: 36px;
+  margin-bottom: 40px;
+}
+
+.tips-grid {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.tip-card {
+  width: 30%;
+  padding: 20px;
+  background-color: #fff;
+  border: 4px solid #000;
+  box-shadow: 8px 8px 0 #000;
+  transition: transform 0.2s, box-shadow 0.2s;
+  cursor: pointer;
+}
+
+.tip-card:hover {
+  transform: translate(-4px, -4px);
+  box-shadow: 12px 12px 0 #000;
+}
+
+.tip-card h3 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.tip-card p {
+  font-size: 14px;
+  margin: 0;
+}
+
+.modal-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.modal-overlay.active {
+  opacity: 1;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.9);
+  background-color: #fff;
+  border: 4px solid #000;
+  box-shadow: 8px 8px 0 #000;
+  padding: 20px;
+  width: 600px;
+  max-width: 90%;
+  max-height: 80vh;
+  overflow-y: auto;
+  z-index: 1001;
+  opacity: 0;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.modal.active {
+  transform: translate(-50%, -50%) scale(1);
+  opacity: 1;
+}
+
+.modal-image {
+  width: 100%;
+  height: auto;
+  margin-bottom: 20px;
+  border: 4px solid #000;
+  box-shadow: 8px 8px 0 #000;
+}
+
+.close-modal {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+/* Scrollbar Styling */
+.modal::-webkit-scrollbar {
+  width: 10px;
+}
+
+.modal::-webkit-scrollbar-track {
+  background: #f4f4f4;
+  border-left: 4px solid #000;
+}
+
+.modal::-webkit-scrollbar-thumb {
+  background: #4CAF50;
+  border: 2px solid #000;
+  border-radius: 0;
+}
+
+.modal::-webkit-scrollbar-thumb:hover {
+  background: #45a049;
+}
+
+/* FAQ Section */
+.faq {
+  padding: 50px 20px;
+  text-align: center;
+  background-color: #fff;
+  border-bottom: 4px solid #000;
+}
+
+.faq h2 {
+  font-size: 36px;
+  margin-bottom: 40px;
+}
+
+.faq-list {
+  width: 60%;
+  margin: 0 auto;
+}
+
+.faq-item {
+  margin-bottom: 20px;
+  background-color: #fff;
+  border: 4px solid #000;
+  box-shadow: 8px 8px 0 #000;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.faq-item:hover {
+  transform: translate(-4px, -4px);
+  box-shadow: 12px 12px 0 #000;
+}
+
+.faq-question {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  cursor: pointer;
+}
+
+.faq-question h3 {
+  font-size: 20px;
+  margin: 0;
+}
+
+.faq-question i {
+  font-size: 20px;
+  transition: transform 0.3s;
+}
+
+.faq-question i.rotate {
+  transform: rotate(180deg);
+}
+
+.faq-answer {
+  padding: 0 20px;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.1s ease-out, padding 0.1s ease-out;
+}
+
+.faq-answer.active {
+  max-height: 200px; 
+  padding: 20px;
+}
+
+.faq-answer p {
+  font-size: 16px;
+  margin: 0;
+}
+
+/* Footer */
+.footer {
+  padding: 20px;
+  text-align: center;
+  background-color: #fff;
+  border-top: 4px solid #000;
+}
+
+.footer-links a {
+  margin: 0 15px;
+  font-weight: bold;
+}
+
+.social-icons img {
+  width: 24px;
+  margin: 0 10px;
+}
+
+
+
+
+
+/* Search Results Section */
+
+.search-results {
+  padding: 50px 20px;
+  text-align: center;
+  background-color: #fff;
+  border-bottom: 4px solid #000;
+}
+
+.search-results h1 {
+  font-size: 36px;
+  margin-bottom: 40px;
+}
+
+.results-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  padding: 0 20px;
+}
+
+.product-card {
+  background-color: #fff;
+  border: 4px solid #000;
+  box-shadow: 8px 8px 0 #000;
+  padding: 20px;
+  text-align: left;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.product-card:hover {
+  transform: translate(-4px, -4px);
+  box-shadow: 12px 12px 0 #000;
+}
+
+.product-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border: 4px solid #000;
+  margin-bottom: 15px;
+}
+
+.product-card h3 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.product-description {
+  font-size: 14px;
+  margin-bottom: 15px;
+}
+
+.view-details-button {
+  background-color: #FFEB3B;
+  border: 4px solid #000;
+  box-shadow: 8px 8px 0 #000;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.view-details-button:hover {
+  transform: translate(-4px, -4px);
+  box-shadow: 12px 12px 0 #000;
+}
+
+
+/* Placeholder Image */
+.placeholder-image {
+  width: 100%;
+  height: 200px;
+  background-color: #e0e0e0; /* Light gray background */
+  border: 4px solid #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  color: #000;
+  margin-bottom: 15px;
+}
+
+
+/* Health Impact Card */
+.health-impact {
+  background-color: #fff;
+  border: 4px solid #000;
+  box-shadow: 8px 8px 0 #000;
+  padding: 20px;
+  margin-top: 20px;
+}
+
+.health-score {
+  font-size: 24px;
+  font-weight: bold;
+  color: #4CAF50;
+  margin-bottom: 20px;
+}
+
+.analysis-results {
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.ingredient-warning {
+  margin-bottom: 15px;
+  padding: 10px;
+  background-color: #FFEB3B;
+  border: 2px solid #000;
+  box-shadow: 4px 4px 0 #000;
+}
+
+.ingredient-name {
+  font-weight: bold;
+  color: #000;
+}
+
+.ingredient-impact {
+  color: #555;
+}
+
+.health-status {
+  padding: 10px;
+  margin-bottom: 20px;
+  font-weight: bold;
+  border: 2px solid #000;
+  box-shadow: 4px 4px 0 #000;
+}
+
+.health-status.good {
+  background-color: #4CAF50;
+  color: #fff;
+}
+
+.health-status.moderate {
+  background-color: #FFC107;
+  color: #000;
+}
+
+.health-status.bad {
+  background-color: #F44336;
+  color: #fff;
+}
+
+
+
+
+  /* Chatbot Styles */
+  .chatbot-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 350px;
+    background: white;
+    border: 4px solid #000;
+    box-shadow: 8px 8px 0 #000;
+    font-family: 'Inter', sans-serif;
+    z-index: 1000;
+    display: none;
+  }
+
+  .chatbot-header {
+    background: #4CAF50;
+    color: white;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 4px solid #000;
+  }
+
+  .chatbot-messages {
+    height: 300px;
+    overflow-y: auto;
+    padding: 10px;
+    background: #f9f9f9;
+  }
+
+  .chatbot-input {
+    display: flex;
+    padding: 10px;
+    border-top: 4px solid #000;
+  }
+
+  .chatbot-input input {
+    flex: 1;
+    padding: 8px;
+    border: 2px solid #000;
+    outline: none;
+  }
+
+  .chatbot-input button {
+    background: #FFEB3B;
+    border: 2px solid #000;
+    padding: 8px 15px;
+    margin-left: 5px;
+    cursor: pointer;
+    font-weight: bold;
+  }
+
+  .message {
+    margin: 10px;
+    padding: 12px 15px;
+    border-radius: 8px;
+    max-width: 85%;
+    line-height: 1.5;
+    animation: fadeIn 0.3s ease;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .user-message {
+    background: #4CAF50;
+    color: white;
+    margin-left: auto;
+    border: 2px solid #000;
+    box-shadow: 3px 3px 0 #000;
+  }
+
+  .bot-message {
+    background: #f0f0f0;
+    border: 2px solid #000;
+    box-shadow: 3px 3px 0 #000;
+    margin-right: auto;
+  }
+
+  .bot-message strong {
+    color: #4CAF50;
+  }
+
+  .bot-message em {
+    font-style: italic;
+    color: #555;
+  }
+
+  .bot-message li {
+    margin: 5px 0;
+    padding-left: 5px;
+  }
+
+  .error {
+    background: #FFEB3B;
+    color: #000;
+  }
+
+  .typing {
+    opacity: 0.7;
+    font-style: italic;
+  }
+
+  .typing-dots {
+    display: inline-flex;
+  }
+
+  .typing-dots span {
+    animation: bounce 1.5s infinite ease-in-out;
+    margin: 0 2px;
+  }
+
+  .typing-dots span:nth-child(2) {
+    animation-delay: 0.2s;
+  }
+
+  .typing-dots span:nth-child(3) {
+    animation-delay: 0.4s;
+  }
+
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-3px); }
+  }
+
+  .chatbot-toggle {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 10px 15px;
+    background: #FFEB3B;
+    border: 4px solid #000;
+    box-shadow: 4px 4px 0 #000;
+    cursor: pointer;
+    z-index: 999;
+    font-weight: bold;
+  }
+
+
+  /* Add these to your existing chatbot styles */
+.quick-replies {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-top: 10px;
+  padding: 5px;
+  background: #fff;
+  border: 2px solid #000;
+}
+
+.quick-reply {
+  background: #FFEB3B;
+  border: 2px solid #000;
+  padding: 5px 10px;
+  font-size: 12px;
+  cursor: pointer;
+  box-shadow: 3px 3px 0 #000;
+  transition: all 0.2s;
+}
+
+.quick-reply:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 5px 5px 0 #000;
+}
+
+
+/* Add these to your search results section */
+.loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid #000;
+  border-top: 4px solid #4CAF50;
+  animation: spin 1s linear infinite;
+  margin: 20px auto;
+  box-shadow: 4px 4px 0 #000;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.ai-generated {
+  padding: 10px;
+  background: #f9f9f9;
+  border: 2px solid #000;
+  margin-top: 10px;
+  box-shadow: 3px 3px 0 #000;
+}
+
+.analysis-animation {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  background: #fff;
+  border: 4px solid #000;
+  margin: 20px 0;
+  box-shadow: 4px 4px 0 #000;
+}
+
+.spinner {
+  width: 30px;
+  height: 30px;
+  border: 3px solid #000;
+  border-top: 3px solid #4CAF50;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 10px;
+}
+
+
+
+/* Enhanced health score display */
+.health-score {
+  font-size: 24px;
+  font-weight: bold;
+  padding: 10px;
+  margin: 15px 0;
+  text-align: center;
+  border: 4px solid #000;
+  box-shadow: 4px 4px 0 #000;
+}
+
+.health-score.good {
+  background: #4CAF50;
+  color: white;
+}
+
+.health-score.moderate {
+  background: #FFC107;
+  color: black;
+}
+
+.health-score.poor {
+  background: #F44336;
+  color: white;
+}
+
+.flagged-ingredient {
+  display: inline-block;
+  padding: 5px 10px;
+  margin: 5px;
+  background: #FFEB3B;
+  border: 2px solid #000;
+  box-shadow: 2px 2px 0 #000;
+  font-weight: bold;
+}
+
+
+/* Add to better handle empty states */
+.no-results {
+  padding: 40px;
+  text-align: center;
+  background: white;
+  border: 4px solid black;
+  box-shadow: 8px 8px 0 black;
+}
+
+/* For the health score meter */
+.score-meter {
+  height: 20px;
+  background: linear-gradient(90deg, #f44336 0%, #FFC107 50%, #4CAF50 100%);
+  margin: 15px 0;
+  position: relative;
+}
+.score-meter::after {
+  content: '';
+  position: absolute;
+  top: -5px;
+  left: var(--score);
+  width: 3px;
+  height: 30px;
+  background: black;
+}
+
+
+/* Add to make chatbot more responsive */
+@media (max-width: 480px) {
+  .chatbot-container {
+    width: 90%;
+    right: 5%;
+  }
+  .chatbot-messages {
+    height: 200px;
+  }
+}
+
+
+/* Add for better ingredient breakdown */
+.ingredient-rating {
+  display: flex;
+  margin: 10px 0;
+  align-items: center;
+}
+.rating-indicator {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+  border: 2px solid black;
+}
+.rating-good { background: #4CAF50; }
+.rating-moderate { background: #FFC107; }
+.rating-poor { background: #f44336; }
+
+
+/* =================== */
+/* BATTLE CARD STYLES  */
+/* =================== */
+.battle-card {
+  background: white;
+  border: 4px solid #000;
+  box-shadow: 8px 8px 0 #000;
+  margin: 40px auto 0;
+  max-width: 400px;
+  height: 180px;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s;
+}
+
+.battle-card-inner {
+  
+  padding-bottom: 15px;
+  text-align: center;
+  position: relative;
+  z-index: 2;
+}
+
+.battle-card h3 {
+  color: #FF5722;
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.battle-card p {
+  margin-bottom: 20px;
+}
+
+.battle-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #FF5722;
+  color: white;
+  border: 3px solid #000;
+  padding: 12px 20px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: all 0.3s;
+  font-family: 'Inter', sans-serif;
+}
+
+.battle-button:hover {
+  background: #E64A19;
+  transform: translate(-3px, -3px);
+  box-shadow: 6px 6px 0 #000;
+}
+
+/* Animation */
+@keyframes pulse-glow {
+  0% { box-shadow: 0 0 0 0 rgba(255,87,34,0.7); }
+  70% { box-shadow: 0 0 0 10px rgba(255,87,34,0); }
+  100% { box-shadow: 0 0 0 0 rgba(255,87,34,0); }
+}
+
+.pulse {
+  animation: pulse-glow 2s infinite;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .battle-card {
+    margin: 30px auto;
+  }
+}
+
+
+.analysis-results {
+  padding: 15px;
+  background: #f8f8f8;
+  border-radius: 8px;
+  margin-top: 15px;
+  line-height: 1.6;
+}
+
+.analysis-results p {
+  margin-bottom: 10px;
+}
+
+.health-score {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #4CAF50;
+  margin: 15px 0;
+}
+
+
+/* Health Analysis Styles */
+.health-score {
+  font-size: 2rem;
+  font-weight: bold;
+  color: var(--primary);
+  margin: 1rem 0;
+  padding: 1rem;
+  border: 3px solid var(--primary);
+  text-align: center;
+  background-color: var(--bg);
+  box-shadow: 4px 4px 0 var(--primary);
+}
+
+.summary {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  margin: 1.5rem 0;
+  padding: 1rem;
+  border-left: 4px solid var(--accent);
+  background-color: #f8f8f8;
+}
+
+.flagged-ingredients, .recommendations {
+  margin: 1.5rem 0;
+  padding: 1rem;
+  border: 3px solid var(--primary);
+  background-color: var(--bg);
+}
+
+.flagged-ingredients {
+  border-color: var(--danger);
+}
+
+.flagged-ingredients h4, .recommendations h4 {
+  margin-top: 0;
+  color: var(--primary);
+  font-family: 'Poppins', sans-serif;
+}
+
+.flagged-ingredients ul, .recommendations ul {
+  padding-left: 1.5rem;
+}
+
+.flagged-ingredients li {
+  margin: 0.5rem 0;
+  padding: 0.5rem;
+  background-color: #FFEBEE;
+  border-left: 4px solid var(--danger);
+}
+
+.recommendations li {
+  margin: 0.5rem 0;
+  padding: 0.5rem;
+  background-color: #E8F5E9;
+  border-left: 4px solid var(--accent);
+}
+
+/* Score color coding */
+.health-score[data-score="10"],
+.health-score[data-score="9"] {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+.health-score[data-score="8"],
+.health-score[data-score="7"] {
+  color: #FFC107;
+  border-color: #FFC107;
+}
+
+.health-score[data-score="6"],
+.health-score[data-score="5"] {
+  color: #FF9800;
+  border-color: #FF9800;
+}
+
+.health-score[data-score="4"],
+.health-score[data-score="3"],
+.health-score[data-score="2"],
+.health-score[data-score="1"] {
+  color: var(--danger);
+  border-color: var(--danger);
+}

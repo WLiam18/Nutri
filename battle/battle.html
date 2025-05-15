@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Food Ingredient Scanner</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" href="battle.css">
+</head>
+<body>
+  <header class="header">
+    <div class="logo-box">
+      <div class="logo">INGREDIENT COMPARISON</div>
+    </div>
+    <button id="back-button" class="back-button">
+      <i class="fas fa-arrow-left"></i> Back
+    </button>
+  </header>
+
+  <main class="container">
+    <!-- Scanner Section -->
+    <div class="scanner-section">
+      <div class="scanner-card" id="scanner-1">
+        <div class="scanner-header">
+          <h2>PRODUCT 1</h2>
+          <div class="scanner-actions">
+            <button class="capture-btn" id="capture-btn-1">
+              <i class="fas fa-camera"></i> SCAN
+            </button>
+            <button class="manual-btn" id="manual-btn-1">
+              <i class="fas fa-keyboard"></i> MANUAL
+            </button>
+            <button class="retry-btn hidden" id="retry-btn-1">
+              <i class="fas fa-sync-alt"></i>
+            </button>
+          </div>
+        </div>
+        
+        <div class="scanner-viewfinder">
+          <video id="camera-1" autoplay playsinline></video>
+          <canvas id="canvas-1" class="hidden"></canvas>
+          <div class="scanner-overlay"></div>
+          <div class="placeholder" id="placeholder-1">
+            <i class="fas fa-arrow-up"></i>
+            <p>Point camera at ingredients list</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="vs-badge">
+        <div class="vs-circle">VS</div>
+      </div>
+
+      <div class="scanner-card" id="scanner-2">
+        <div class="scanner-header">
+          <h2>PRODUCT 2</h2>
+          <div class="scanner-actions">
+            <button class="capture-btn" id="capture-btn-2">
+              <i class="fas fa-camera"></i> SCAN
+            </button>
+            <button class="manual-btn" id="manual-btn-2">
+              <i class="fas fa-keyboard"></i> MANUAL
+            </button>
+            <button class="retry-btn hidden" id="retry-btn-2">
+              <i class="fas fa-sync-alt"></i>
+            </button>
+          </div>
+        </div>
+        
+        <div class="scanner-viewfinder">
+          <video id="camera-2" autoplay playsinline></video>
+          <canvas id="canvas-2" class="hidden"></canvas>
+          <div class="scanner-overlay"></div>
+          <div class="placeholder" id="placeholder-2">
+            <i class="fas fa-arrow-up"></i>
+            <p>Point camera at ingredients list</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Manual Input Modal -->
+    <div class="modal hidden" id="manual-modal">
+      <div class="modal-content">
+        <h3 id="modal-title">Enter Ingredients Manually</h3>
+        <textarea id="manual-input" rows="10" placeholder="Paste or type ingredients list here..."></textarea>
+        <div class="modal-actions">
+          <button id="cancel-manual">Cancel</button>
+          <button id="submit-manual">Submit</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Results Section -->
+    <div class="results-section hidden" id="results-section">
+      <div class="battle-trophy">
+        <div class="trophy-icon">🏆</div>
+        <h2 id="winner-text">WINNER PRODUCT</h2>
+        <div class="trophy-icon">🏆</div>
+      </div>
+
+      <div class="ingredient-breakdown">
+        <div class="ingredient-column" id="product-1-results">
+          <h3 class="product-title">PRODUCT 1</h3>
+          <div class="score-display" id="score-1">SCORE: 75/100</div>
+          <div class="ingredient-list" id="ingredients-1"></div>
+        </div>
+
+        <div class="comparison-column">
+          <div class="comparison-metric">
+            <h4>ADDITIVES</h4>
+            <div class="metric-bars">
+              <div class="metric-bar" id="additives-bar-1"></div>
+              <div class="metric-bar" id="additives-bar-2"></div>
+            </div>
+          </div>
+
+          <div class="comparison-metric">
+            <h4>PROCESSING</h4>
+            <div class="metric-bars">
+              <div class="metric-bar" id="processing-bar-1"></div>
+              <div class="metric-bar" id="processing-bar-2"></div>
+            </div>
+          </div>
+
+          <div class="comparison-metric">
+            <h4>NUTRIENT DENSITY</h4>
+            <div class="metric-bars">
+              <div class="metric-bar" id="nutrient-bar-1"></div>
+              <div class="metric-bar" id="nutrient-bar-2"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="ingredient-column" id="product-2-results">
+          <h3 class="product-title">PRODUCT 2</h3>
+          <div class="score-display" id="score-2">SCORE: 65/100</div>
+          <div class="ingredient-list" id="ingredients-2"></div>
+        </div>
+      </div>
+
+      <button class="new-battle-btn" id="new-battle-btn">
+        <i class="fas fa-redo"></i> NEW COMPARISON
+      </button>
+    </div>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/tesseract.js@4/dist/tesseract.min.js"></script>
+  <script src="battle.js"></script>
+</body>
+</html>

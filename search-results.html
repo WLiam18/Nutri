@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Search Results - NutriScan</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="logo-box">
+      <div class="logo">NutriScan</div>
+    </div>
+    <nav class="nav">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="#" class="nav-link">About</a>
+      <a href="#" class="nav-link">How It Works</a>
+      <a href="#" class="nav-link">Contact</a>
+    </nav>
+  </header>
+
+  <!-- Search Results Section -->
+  <section class="search-results">
+    <h1>Search Results for "<span id="search-query"></span>"</h1>
+    <div class="results-grid" id="results-grid">
+      <!-- Product cards will be dynamically added here -->
+    </div>
+  </section>
+
+  <!-- Detailed Product Modal -->
+  <div class="modal-overlay" id="modal-overlay"></div>
+  <div class="modal" id="modal">
+    <div class="modal-content">
+      <button class="close-modal">&times;</button>
+      <h2 id="modal-title"></h2>
+      <img id="modal-image" src="" alt="" class="modal-image">
+      <div id="modal-body"></div>
+      <div id="analysis-animation" class="analysis-animation">
+        <div class="spinner"></div>
+        <p>Analyzing product...</p>
+      </div>
+      <div id="health-impact" class="health-impact"></div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-links">
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Service</a>
+      <a href="#">Contact Us</a>
+    </div>
+    <div class="social-icons">
+      <a href="#"><img src="instagram-icon.png" alt="Instagram"></a>
+      <a href="#"><img src="twitter-icon.png" alt="Twitter"></a>
+      <a href="#"><img src="facebook-icon.png" alt="Facebook"></a>
+    </div>
+  </footer>
+
+  <!-- JavaScript -->
+  <script>
+// Extract the search query from the URL
+const urlParams = new URLSearchParams(window.location.search);
+const query = urlParams.get('query');
+
+// Display the search query in the heading
+document.getElementById('search-query').textContent = query;
+
+// Fetch and display product data
+async function fetchAndDisplayResults(query) {
+  const resultsGrid = document.getElementById('results-grid');
+  resultsGrid.innerHTML = '<p>Loading...</p>'; // Show a loading message
+
+  // Fetch data from OpenFoodFacts
+  const productData = await fetchProductData(query);
+
+  if (productData && productData.length > 0) {
+    // Filter out non-English products
+    const englishProducts = productData.filter(product => product.lang === 'en');
+
+    // Merge duplicate products
+    const mergedProducts = mergeProducts(englishProducts);
+
+    // Deduplicate products
+    const uniqueProducts = deduplicateProducts(mergedProducts);
+
+    // Prioritize products by data quality
+    const prioritizedProducts = prioritizeProducts(uniqueProducts);
+
+    // Filter out products with missing essential data
+    const validProducts = prioritizedProducts.filter(
+      (product) =>
+        product.product_name && product.image_url && product.ingredients_text
+    );
+
+    if (validProducts.length > 0) {
+      resultsGrid.innerHTML = '';
+
+      // Display each valid product as a card
+      validProducts.forEach((product) => {
+        const productCard = document.createElement('div');
+        productCard.className = 'product-card';
+
+        productCard.innerHTML = `
+          <img src="${product.image_url}" alt="${product.product_name}" class="product-image">
+          <h3>${product.product_name}</h3>
+          <button class="view-details-button" data-product-id="${product.code}">View Details</button>
+        `;
+
+        resultsGrid.appendChild(productCard);
+      });
+    } else {
+      // If no valid products are found, use Open Router API
+      const aiInfo = await fetchAIGeneratedInfo(query);
+      if (aiInfo) {
+        resultsGrid.innerHTML = `
+          <div class="product-card">
+            <div class="placeholder-image">No Image Available</div>
+            <h3>${aiInfo.product_name}</h3>
+            <button class="view-details-button" data-product='${JSON.stringify(aiInfo)}'>View Details</button>
+          </div>
+        `;
+      } else {
+        resultsGrid.innerHTML = '<p>No valid products found. Try another search!</p>';
+      }
+    }
+  } else {
+    // If no products are found, use Open Router API
+    const aiInfo = await fetchAIGeneratedInfo(query);
+    if (aiInfo) {
+      resultsGrid.innerHTML = `
+        <div class="product-card">
+          <div class="placeholder-image">No Image Available</div>
+          <h3>${aiInfo.product_name}</h3>
+          <button class="view-details-button" data-product='${JSON.stringify(aiInfo)}'>View Details</button>
+        </div>
+      `;
+    } else {
+      resultsGrid.innerHTML = '<p>No products found. Try another search!</p>';
+    }
+  }
+
+  // Add event listeners to "View Details" buttons
+  addViewDetailsListeners();
+}
+
+// Add event listeners to "View Details" buttons
+function addViewDetailsListeners() {
+  const viewDetailsButtons = document.querySelectorAll('.view-details-button');
+  viewDetailsButtons.forEach((button) => {
+    button.addEventListener('click', async () => {
+      const productId = button.getAttribute('data-product-id');
+      const product = await fetchProductById(productId); // Fetch product details by ID
+      if (product) {
+        openModal(product);
+      } else {
+        alert('Failed to fetch product details. Please try again.');
+      }
+    });
+  });
+}
+
+// Open modal with product details
+async function openModal(product) {
+  const modalOverlay = document.getElementById('modal-overlay');
+  const modal = document.getElementById('modal');
+  const modalTitle = document.getElementById('modal-title');
+  const modalImage = document.getElementById('modal-image');
+  const modalBody = document.getElementById('modal-body');
+  const analysisAnimation = document.getElementById('analysis-animation');
+  const healthImpact = document.getElementById('health-impact');
+
+  // Set modal content
+  modalTitle.textContent = product.product_name || 'Unknown Product';
+  modalImage.src = product.image_url || 'placeholder-image.jpg';
+
+  // Ensure ingredients is a string
+  let ingredients = product.ingredients_text || 'No ingredients available.';
+  if (Array.isArray(ingredients)) {
+    ingredients = ingredients.join(', ');
+  } else if (typeof ingredients === 'object') {
+    ingredients = JSON.stringify(ingredients);
+  }
+
+  modalBody.innerHTML = `
+    <h3>Ingredients</h3>
+    <p>${ingredients}</p>
+  `;
+
+  // Show modal
+  modalOverlay.style.display = 'block';
+  modal.style.display = 'block';
+  setTimeout(() => {
+    modalOverlay.classList.add('active');
+    modal.classList.add('active');
+  }, 10);
+
+  // Simulate analysis
+  analysisAnimation.style.display = 'flex';
+  healthImpact.style.display = 'none';
+
+  // Generate health impact using DeepSeek API
+  const { score, analysis } = await analyzeIngredientsWithDeepSeek(ingredients);
+
+  setTimeout(() => {
+    analysisAnimation.style.display = 'none';
+    healthImpact.style.display = 'block';
+    healthImpact.innerHTML = `
+      <h3>Health Impact</h3>
+      <div class="health-score">Health Score: ${score}/10</div>
+      <div class="analysis-results">${analysis}</div>
+    `;
+  }, 1000); // Simulate 1-second analysis
+}
+
+// Close modal
+function closeModal() {
+  const modalOverlay = document.getElementById('modal-overlay');
+  const modal = document.getElementById('modal');
+
+  modalOverlay.classList.remove('active');
+  modal.classList.remove('active');
+  setTimeout(() => {
+    modalOverlay.style.display = 'none';
+    modal.style.display = 'none';
+  }, 300);
+}
+
+// Add event listeners to close modal
+document.querySelector('.close-modal').addEventListener('click', closeModal);
+document.getElementById('modal-overlay').addEventListener('click', closeModal);
+
+// Analyze ingredients using DeepSeek API
+async function analyzeIngredientsWithDeepSeek(ingredients) {
+  const apiKey = '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';
+  const url = 'https://openrouter.ai/api/v1/chat/completions';
+
+  // Improved prompt to request clean output
+  const prompt = `Analyze these ingredients for health impact:
+${ingredients}
+
+Return JSON with:
+- score (1-10)
+- summary (short plain text)
+- flagged_ingredients (array with name and reason)
+- recommendations (array)
+
+IMPORTANT: Return ONLY the JSON with no markdown formatting, code blocks, or backticks.
+
+Example:
+{
+  "score": 7,
+  "summary": "Moderately healthy with some concerns",
+  "flagged_ingredients": [
+    {"name": "high fructose corn syrup", "reason": "linked to obesity"},
+    {"name": "red 40", "reason": "artificial coloring"}
+  ],
+  "recommendations": [
+    "Contains additives - consume in moderation",
+    "Good protein content"
+  ]
+}`;
+
+  try {
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${apiKey}`,
+      },
+      body: JSON.stringify({
+        model: 'deepseek/deepseek-r1:free',
+        messages: [{ role: 'user', content: prompt }],
+        response_format: { type: "json_object" }
+      }),
+    });
+
+    if (!response.ok) throw new Error(`API error: ${response.status}`);
+    
+    const data = await response.json();
+    let content = data.choices[0].message.content;
+    
+    // Clean up the content - remove markdown code blocks if present
+    content = content.replace(/```json\s*/g, '').replace(/```\s*$/g, '').trim();
+    
+    // Handle potential JSON parsing issues
+    let result;
+    try {
+      // Try to parse the JSON response
+      result = JSON.parse(content);
+    } catch (parseError) {
+      console.error('JSON parsing error:', parseError);
+      console.log('Raw content causing error:', content);
+      
+      // Try to extract JSON if wrapped in backticks or other formatting
+      const jsonMatch = content.match(/\{[\s\S]*\}/);
+      if (jsonMatch) {
+        try {
+          result = JSON.parse(jsonMatch[0]);
+        } catch (secondError) {
+          console.error('Second parsing attempt failed:', secondError);
+          // Fallback to default result
+          result = {
+            score: 5,
+            summary: "Unable to analyze ingredients properly",
+            flagged_ingredients: [],
+            recommendations: ["Consider researching these ingredients individually"]
+          };
+        }
+      } else {
+        // Fallback: Generate a default result
+        result = {
+          score: 5,
+          summary: "Unable to analyze ingredients properly",
+          flagged_ingredients: [],
+          recommendations: ["Consider researching these ingredients individually"]
+        };
+      }
+    }
+    
+    // Format the analysis for display
+    let analysisHTML = `
+      <div class="health-score">Health Score: ${result.score}/10</div>
+      <p class="summary">${result.summary}</p>
+    `;
+
+    if (result.flagged_ingredients && result.flagged_ingredients.length > 0) {
+      analysisHTML += `<div class="flagged-ingredients">
+        <h4>⚠️ Flagged Ingredients:</h4>
+        <ul>`;
+      
+      result.flagged_ingredients.forEach(ing => {
+        analysisHTML += `<li><strong>${ing.name}</strong>: ${ing.reason}</li>`;
+      });
+      
+      analysisHTML += `</ul></div>`;
+    }
+
+    if (result.recommendations && result.recommendations.length > 0) {
+      analysisHTML += `<div class="recommendations">
+        <h4>Recommendations:</h4>
+        <ul>`;
+      
+      result.recommendations.forEach(rec => {
+        analysisHTML += `<li>${rec}</li>`;
+      });
+      
+      analysisHTML += `</ul></div>`;
+    }
+
+    return {
+      score: result.score,
+      analysis: analysisHTML
+    };
+
+  } catch (error) {
+    console.error('Analysis error:', error);
+    return {
+      score: 5,
+      analysis: `<div class="error">Analysis failed: ${error.message}</div>`
+    };
+  }
+}
+
+// In search-results.html, update the fetchProductData function:
+async function fetchProductData(query) {
+  const url = `https://world.openfoodfacts.org/cgi/search.pl?search_terms=${encodeURIComponent(
+    query
+  )}&search_simple=1&action=process&json=1&lc=en&fields=product_name,ingredients_text,image_url,code,lang,ingredients_lang`;
+
+  try {
+    const response = await fetch(url);
+    const data = await response.json();
+    
+    // Enhanced language filtering
+    return (data.products || []).filter(product => {
+      // Check both product language and ingredients language
+      const isEnglishProduct = product.lang === 'en';
+      const hasEnglishIngredients = !product.ingredients_lang || 
+                                  product.ingredients_lang === 'en';
+      return isEnglishProduct && hasEnglishIngredients;
+    });
+  } catch (error) {
+    console.error('Error fetching product data:', error);
+    return null;
+  }
+}
+
+// Fetch product by ID
+async function fetchProductById(productId) {
+  const url = `https://world.openfoodfacts.org/api/v0/product/${productId}.json`;
+  try {
+    const response = await fetch(url);
+    const data = await response.json();
+    return data.product; // Return the product details
+  } catch (error) {
+    console.error('Error fetching product by ID:', error);
+    return null;
+  }
+}
+
+// Merge duplicate products
+function mergeProducts(products) {
+  const mergedProducts = {};
+
+  products.forEach((product) => {
+    const barcode = product.code || product.barcode;
+    const key = barcode || `${product.product_name}-${product.brand}-${product.image_url}`;
+
+    if (!mergedProducts[key]) {
+      mergedProducts[key] = product;
+    } else {
+      // Merge fields
+      const existingProduct = mergedProducts[key];
+      existingProduct.ingredients_text =
+        existingProduct.ingredients_text || product.ingredients_text;
+      existingProduct.nutriments = existingProduct.nutriments || product.nutriments;
+      existingProduct.brand = existingProduct.brand || product.brand;
+    }
+  });
+
+  return Object.values(mergedProducts);
+}
+
+// Deduplicate products
+function deduplicateProducts(products) {
+  const uniqueProducts = [];
+  const seenBarcodes = new Set();
+
+  products.forEach((product) => {
+    const barcode = product.code || product.barcode;
+    if (barcode && !seenBarcodes.has(barcode)) {
+      seenBarcodes.add(barcode);
+      uniqueProducts.push(product);
+    } else if (!barcode) {
+      // Fallback: Use product name, brand, and image URL to identify duplicates
+      const key = `${product.product_name}-${product.brand}-${product.image_url}`;
+      if (!seenBarcodes.has(key)) {
+        seenBarcodes.add(key);
+        uniqueProducts.push(product);
+      }
+    }
+  });
+
+  return uniqueProducts;
+}
+
+// Prioritize products by data quality
+function prioritizeProducts(products) {
+  return products.sort((a, b) => (b.data_quality || 0) - (a.data_quality || 0));
+}
+
+// Fetch AI-generated info from Open Router API
+async function fetchAIGeneratedInfo(productName) {
+  const apiKey = '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'; // Replace with your actual API key
+  const url = 'https://openrouter.ai/api/v1/chat/completions';
+
+  const payload = {
+    model: 'deepseek/deepseek-r1:free', // Use the DeepSeek model
+    messages: [
+      {
+        role: 'user',
+        content: `Provide a detailed description of ${productName}, including its ingredients.`,
+      },
+    ],
+  };
+
+  try {
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${apiKey}`,
+        'HTTP-Referer': 'https://nutriscan.com', // Replace with your site URL
+        'X-Title': 'NutriScan', // Replace with your site name
+      },
+      body: JSON.stringify(payload),
+    });
+
+    if (!response.ok) {
+      throw new Error(`API request failed with status ${response.status}`);
+    }
+
+    const data = await response.json();
+    const generatedText = data.choices[0].message.content; // Extract the generated content
+
+    return {
+      product_name: productName,
+      ingredients: generatedText,
+    };
+  } catch (error) {
+    console.error('Error fetching AI-generated info:', error);
+    return null;
+  }
+}
+
+// Fetch and display results when the page loads
+fetchAndDisplayResults(query);
+  </script>
+</body>
+</html>

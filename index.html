@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NutriScan - Scan. Analyze. Choose Better.</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
+  
+</head>
+<body>
+  
+  <!-- Header -->
+  <header class="header">
+    <div class="logo-box">
+      <div class="logo">NutriScan</div>
+    </div>
+    <nav class="nav">
+      <a href="food-game.html" class="nav-link">Game</a>
+      <a href="#" class="nav-link">Home</a>
+      <a href="#" class="nav-link">About</a>
+      <a href="#" class="nav-link">How It Works</a>
+      <a href="#" class="nav-link">Contact</a>
+    </nav>
+  </header>
+
+  <div class="chatbot-container">
+    <div class="chatbot-header">
+      <h3>NutriScan Assistant</h3>
+      <button class="close-chatbot">&times;</button>
+    </div>
+    <div class="chatbot-messages" id="chatbot-messages"></div>
+    <div class="chatbot-input">
+      <input type="text" id="user-input" placeholder="Ask about nutrition...">
+      <button id="send-button">Send</button>
+    </div>
+  </div>
+
+<!-- Hero Section -->
+<section class="hero">
+  <h1>Scan. Analyze. Choose Better.</h1>
+  <p>Discover what's really in your food and find healthier alternatives.</p>
+  <div class="search-scan-container">
+    <!-- Search Form -->
+    <form id="search-form" action="search-results.html" method="GET">
+      <div class="search-bar">
+        <input type="text" name="query" placeholder="Search for a product..." aria-label="Search for a product" required>
+        <button type="submit" class="search-button">
+          <i class="fas fa-search"></i>
+        </button>
+      </div>
+    </form>
+    <!-- Scan Button -->
+    <button class="scan-button" id="scan-button">
+      <i class="fas fa-camera"></i> Scan a Product
+    </button>
+  </div>
+</section>
+   
+    
+  
+
+  <!-- How It Works Section -->
+  <section class="how-it-works">
+    <h2>How It Works</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="icon animate-fade-in">
+          <i class="fas fa-search fa-3x"></i>
+        </div>
+        <h3>Search/Scan</h3>
+        <p>Search for a product by name or scan its barcode.</p>
+      </div>
+      <div class="step">
+        <div class="icon animate-fade-in">
+          <i class="fas fa-chart-bar fa-3x"></i>
+        </div>
+        <h3>Analyze</h3>
+        <p>Get instant ingredient analysis and a health score.</p>
+      </div>
+      <div class="step">
+        <div class="icon animate-fade-in">
+          <i class="fas fa-heart fa-3x"></i>
+        </div>
+        <h3>Discover</h3>
+        <p>Find healthier alternatives if needed.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Popular Alternatives Section -->
+  <section class="alternatives">
+    <h2>Popular Alternatives</h2>
+    <p class="subtext">Explore healthier options for your favorite products.</p>
+    
+    <!-- Existing Marquee (Keep This) -->
+    <div class="marquee">
+      <div class="marquee-content">
+        <div class="card">
+          <h3>Almond Milk</h3>
+          <p>A dairy-free, low-calorie alternative to regular milk.</p>
+        </div>
+        <div class="card">
+          <h3>Quinoa</h3>
+          <p>A protein-packed grain alternative to rice.</p>
+        </div>
+        <div class="card">
+          <h3>Dark Chocolate</h3>
+          <p>A healthier alternative to milk chocolate.</p>
+        </div>
+        <div class="card">
+          <h3>Coconut Oil</h3>
+          <p>A healthy fat alternative to butter.</p>
+        </div>
+        <div class="card">
+          <h3>Oatmeal</h3>
+          <p>A fiber-rich alternative to sugary cereals.</p>
+        </div>
+      </div>
+    </div>
+  
+    <!-- NEW BATTLE CARD (Add This After Marquee) -->
+    <div class="battle-card">
+      <div class="battle-card-inner">
+        <h3>Can't Decide?</h3>
+        <p>Let your products battle it out!</p>
+        <a href="battle/battle.html" class="battle-button pulse">
+          <i class="fas fa-trophy"></i> VS Mode
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section class="testimonials">
+    <h2>What Our Users Say</h2>
+    <div class="testimonial-cards">
+      <div class="testimonial">
+        <img src="user1.jpg" alt="John Doe" class="user-avatar">
+        <p>"NutriScan has completely changed the way I shop for groceries. I can now make healthier choices effortlessly!"</p>
+        <h4>- John Doe</h4>
+      </div>
+      <div class="testimonial">
+        <img src="user2.jpg" alt="Jane Smith" class="user-avatar">
+        <p>"I love the alternatives feature. It’s a game-changer for my family’s diet!"</p>
+        <h4>- Jane Smith</h4>
+      </div>
+      <div class="testimonial">
+        <img src="user3.jpg" alt="Alice Johnson" class="user-avatar">
+        <p>"The health scores are so helpful. I feel more confident about the food I eat now."</p>
+        <h4>- Alice Johnson</h4>
+      </div>
+    </div>
+  </section>
+
+  <!-- Health Tips Section -->
+  <section class="health-tips">
+    <h2>Health Tips & Articles</h2>
+    <div class="tips-grid">
+      <!-- Card 1: Decoding Food Labels -->
+      <div class="tip-card" data-tip="1">
+        <img src="food-labels.jpg" alt="Decoding Food Labels" class="tip-thumbnail">
+        <h3>Decoding Food Labels</h3>
+        <p>Learn what to look for and what to avoid on food labels.</p>
+      </div>
+      <!-- Card 2: 5 Easy Swaps -->
+      <div class="tip-card" data-tip="2">
+        <img src="healthy-swaps.jpg" alt="5 Easy Swaps" class="tip-thumbnail">
+        <h3>5 Easy Swaps for a Healthier Diet</h3>
+        <p>Discover simple alternatives to common unhealthy foods.</p>
+      </div>
+      <!-- Card 3: Understanding Ingredients -->
+      <div class="tip-card" data-tip="3">
+        <img src="ingredients.jpg" alt="Understanding Ingredients" class="tip-thumbnail">
+        <h3>Understanding Ingredients</h3>
+        <p>A beginner’s guide to common food additives.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Health Tips Modals -->
+  <div class="modal-overlay" id="modal-overlay"></div>
+  <div class="modal" id="modal">
+    <div class="modal-content">
+      <button class="close-modal">&times;</button>
+      <h2 id="modal-title"></h2>
+      <img id="modal-image" src="" alt="" class="modal-image">
+      <div id="modal-body"></div>
+    </div>
+  </div>
+
+  <!-- FAQ Section -->
+  <section class="faq">
+    <h2>Frequently Asked Questions</h2>
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-question">
+          <h3>How does NutriScan determine a product's health score?</h3>
+          <i class="fas fa-chevron-down"></i>
+        </div>
+        <div class="faq-answer">
+          <p>NutriScan uses advanced algorithms to analyze the ingredients and nutritional information of a product. It considers factors like sugar content, additives, and overall nutritional value to provide a health score.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">
+          <h3>Is NutriScan free to use?</h3>
+          <i class="fas fa-chevron-down"></i>
+        </div>
+        <div class="faq-answer">
+          <p>Yes, NutriScan is completely free to use! Our goal is to help everyone make healthier food choices without any barriers.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">
+          <h3>Can I scan any product with NutriScan?</h3>
+          <i class="fas fa-chevron-down"></i>
+        </div>
+        <div class="faq-answer">
+          <p>Yes, you can scan any product with a barcode or search for it by name. If the product isn’t in our database, we’ll analyze it using the information you provide.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-links">
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Service</a>
+      <a href="#">Contact Us</a>
+    </div>
+    <div class="social-icons">
+      <a href="#"><img src="instagram-icon.png" alt="Instagram"></a>
+      <a href="#"><img src="twitter-icon.png" alt="Twitter"></a>
+      <a href="#"><img src="facebook-icon.png" alt="Facebook"></a>
+    </div>
+  </footer>
+
+  <!-- Script Section Goes Here -->
+</body>
+</html>
+
+  <script>
+    // Data for the health tips/articles
+    const tipsData = {
+      1: {
+        title: "Decoding Food Labels: What to Look For and What to Avoid",
+        image: "food-labels.jpg",
+        content: `
+          <h3>Introduction</h3>
+          <p>Food labels can be overwhelming, but understanding them is crucial for making healthier choices. Whether you’re trying to avoid hidden sugars, unhealthy fats, or artificial additives, this guide will help you decode food labels like a pro.</p>
+          <h3>Understanding Serving Sizes</h3>
+          <p><strong>What It Means:</strong> The serving size tells you how much of the product is considered one serving. All the nutritional information on the label is based on this amount.</p>
+          <p><strong>Why It Matters:</strong> Many packages contain multiple servings, so if you eat the whole package, you’re consuming more calories, sugar, and fat than you might realize.</p>
+          <p><strong>Tip:</strong> Always check the servings per container and adjust your portions accordingly.</p>
+          <h3>Spotting Hidden Sugars</h3>
+          <p><strong>Common Names:</strong> Sugar can hide under names like high fructose corn syrup, maltodextrin, cane sugar, and fruit juice concentrate.</p>
+          <p><strong>Why It’s Bad:</strong> Excess sugar intake is linked to obesity, diabetes, and heart disease.</p>
+          <p><strong>Tip:</strong> Look for products with less than 5g of sugar per serving.</p>
+          <h3>Identifying Unhealthy Fats</h3>
+          <p><strong>Trans Fats:</strong> Often listed as “partially hydrogenated oils,” these fats are harmful and should be avoided.</p>
+          <p><strong>Saturated Fats:</strong> Found in butter, cheese, and fatty meats, these fats can raise cholesterol levels.</p>
+          <p><strong>Tip:</strong> Opt for products with 0g trans fat and low saturated fat.</p>
+          <h3>Decoding Ingredient Lists</h3>
+          <p><strong>Order Matters:</strong> Ingredients are listed in descending order by weight. The first few ingredients make up the majority of the product.</p>
+          <p><strong>Red Flags:</strong> Avoid products with sugar, unhealthy fats, or artificial additives in the first few ingredients.</p>
+          <p><strong>Tip:</strong> Choose products with whole, recognizable ingredients.</p>
+          <h3>Conclusion</h3>
+          <p>Reading food labels doesn’t have to be complicated. By focusing on serving sizes, hidden sugars, unhealthy fats, and ingredient lists, you can make smarter choices and take control of your diet.</p>
+        `,
+      },
+      2: {
+        title: "5 Easy Swaps for a Healthier Diet",
+        image: "healthy-swaps.jpg",
+        content: `
+          <h3>Introduction</h3>
+          <p>Making small changes to your diet can have a big impact on your health. Here are 5 easy swaps to help you eat better without sacrificing flavor.</p>
+          <h3>1. Swap Soda for Sparkling Water</h3>
+          <p><strong>Why:</strong> Soda is loaded with sugar and empty calories, which can lead to weight gain and health issues.</p>
+          <p><strong>How:</strong> Replace soda with sparkling water. Add a slice of lemon, lime, or cucumber for a refreshing twist.</p>
+          <p><strong>Benefits:</strong> Reduces sugar intake, keeps you hydrated, and supports weight management.</p>
+          <h3>2. Replace White Rice with Quinoa</h3>
+          <p><strong>Why:</strong> White rice is a refined grain with little nutritional value, while quinoa is a complete protein and rich in fiber.</p>
+          <p><strong>How:</strong> Cook quinoa as you would rice and use it as a base for meals like stir-fries, salads, or bowls.</p>
+          <p><strong>Benefits:</strong> Improves digestion, provides essential nutrients, and keeps you full longer.</p>
+          <h3>3. Choose Dark Chocolate Over Milk Chocolate</h3>
+          <p><strong>Why:</strong> Milk chocolate is high in sugar and unhealthy fats, while dark chocolate contains antioxidants and less sugar.</p>
+          <p><strong>How:</strong> Look for dark chocolate with at least 70% cocoa content. Enjoy a small piece as a treat.</p>
+          <p><strong>Benefits:</strong> Supports heart health, improves brain function, and satisfies sweet cravings.</p>
+          <h3>4. Use Olive Oil Instead of Butter</h3>
+          <p><strong>Why:</strong> Butter is high in saturated fats, which can raise cholesterol levels, while olive oil is rich in healthy monounsaturated fats.</p>
+          <p><strong>How:</strong> Use olive oil for cooking, baking, or as a salad dressing. Opt for extra virgin olive oil for maximum benefits.</p>
+          <p><strong>Benefits:</strong> Promotes heart health, reduces inflammation, and supports brain function.</p>
+          <h3>5. Snack on Nuts Instead of Chips</h3>
+          <p><strong>Why:</strong> Chips are high in unhealthy fats and sodium, while nuts are packed with healthy fats, protein, and fiber.</p>
+          <p><strong>How:</strong> Keep a small bag of mixed nuts (e.g., almonds, walnuts, cashews) for a quick and satisfying snack.</p>
+          <p><strong>Benefits:</strong> Keeps you full longer, provides essential nutrients, and supports heart health.</p>
+          <h3>Conclusion</h3>
+          <p>By making these simple swaps, you can take a big step toward a healthier diet. Start with one or two swaps and gradually incorporate more into your routine.</p>
+        `,
+      },
+      3: {
+        title: "Understanding Ingredients: A Beginner’s Guide to Common Additives",
+        image: "ingredients.jpg",
+        content: `
+          <h3>Introduction</h3>
+          <p>Ever wondered what those long, unpronounceable ingredients on food labels mean? This guide will help you understand common food additives and their impact on your health.</p>
+          <h3>Common Additives to Avoid</h3>
+          <p><strong>Artificial Sweeteners:</strong></p>
+          <ul>
+            <li><strong>Examples:</strong> Aspartame, sucralose, saccharin.</li>
+            <li><strong>Why Avoid:</strong> Linked to digestive issues and potential long-term health risks.</li>
+            <li><strong>Tip:</strong> Opt for natural sweeteners like stevia or honey in moderation.</li>
+          </ul>
+          <p><strong>Preservatives:</strong></p>
+          <ul>
+            <li><strong>Examples:</strong> Sodium benzoate, BHA, BHT.</li>
+            <li><strong>Why Avoid:</strong> Can cause allergic reactions and may have harmful long-term effects.</li>
+            <li><strong>Tip:</strong> Choose fresh or minimally processed foods.</li>
+          </ul>
+          <p><strong>Artificial Colors:</strong></p>
+          <ul>
+            <li><strong>Examples:</strong> Red 40, Yellow 5, Blue 1.</li>
+            <li><strong>Why Avoid:</strong> Linked to hyperactivity in children and potential carcinogens.</li>
+            <li><strong>Tip:</strong> Look for products with natural colorings like beet juice or turmeric.</li>
+          </ul>
+          <h3>Neutral Additives</h3>
+          <p><strong>Emulsifiers:</strong></p>
+          <ul>
+            <li><strong>Examples:</strong> Lecithin, mono- and diglycerides.</li>
+            <li><strong>Why Neutral:</strong> Help mix ingredients but may cause digestive issues in large amounts.</li>
+            <li><strong>Tip:</strong> Generally safe in moderation.</li>
+          </ul>
+          <p><strong>Thickeners:</strong></p>
+          <ul>
+            <li><strong>Examples:</strong> Xanthan gum, guar gum.</li>
+            <li><strong>Why Neutral:</strong> Improve texture but can cause bloating in sensitive individuals.</li>
+            <li><strong>Tip:</strong> Fine for most people in small amounts.</li>
+          </ul>
+          <h3>Healthy Additives</h3>
+          <p><strong>Natural Flavors:</strong></p>
+          <ul>
+            <li><strong>What They Are:</strong> Derived from real food sources.</li>
+            <li><strong>Why Healthy:</strong> Generally safe and enhance flavor without artificial chemicals.</li>
+            <li><strong>Tip:</strong> Look for products with “natural flavors” rather than “artificial flavors.”</li>
+          </ul>
+          <p><strong>Vitamins and Minerals:</strong></p>
+          <ul>
+            <li><strong>What They Are:</strong> Added to fortify foods with nutrients.</li>
+            <li><strong>Why Healthy:</strong> Can help meet daily nutritional needs.</li>
+            <li><strong>Tip:</strong> Choose fortified foods like whole-grain cereals or plant-based milks.</li>
+          </ul>
+          <h3>Conclusion</h3>
+          <p>Understanding food additives can help you make smarter choices. Avoid harmful additives, be cautious with neutral ones, and embrace healthy options to improve your diet.</p>
+        `,
+      },
+    };
+  
+    const tipCards = document.querySelectorAll('.tip-card');
+const modalOverlay = document.getElementById('modal-overlay');
+const modal = document.getElementById('modal');
+const modalTitle = document.getElementById('modal-title');
+const modalImage = document.getElementById('modal-image');
+const modalBody = document.getElementById('modal-body');
+const closeModalBtn = document.querySelector('.close-modal');
+
+// Add click event listeners to each card
+tipCards.forEach((card) => {
+  card.addEventListener('click', () => {
+    const tipId = card.getAttribute('data-tip');
+    const tip = tipsData[tipId];
+    modalTitle.textContent = tip.title;
+    modalImage.src = tip.image;
+    modalBody.innerHTML = tip.content;
+
+    // Show modal with smooth animation
+    modalOverlay.style.display = 'block';
+    modal.style.display = 'block';
+    setTimeout(() => {
+      modalOverlay.classList.add('active');
+      modal.classList.add('active');
+    }, 10);
+  });
+});
+
+// Close modal when the close button is clicked
+closeModalBtn.addEventListener('click', () => {
+  modalOverlay.classList.remove('active');
+  modal.classList.remove('active');
+  setTimeout(() => {
+    modalOverlay.style.display = 'none';
+    modal.style.display = 'none';
+  }, 300);
+});
+
+// Close modal when the overlay is clicked
+modalOverlay.addEventListener('click', () => {
+  modalOverlay.classList.remove('active');
+  modal.classList.remove('active');
+  setTimeout(() => {
+    modalOverlay.style.display = 'none';
+    modal.style.display = 'none';
+  }, 300);
+});
+
+// FAQ Accordion Functionality
+const faqQuestions = document.querySelectorAll('.faq-question');
+
+faqQuestions.forEach((question) => {
+  question.addEventListener('click', () => {
+    const answer = question.nextElementSibling;
+    const icon = question.querySelector('i');
+
+    // Toggle the active class on the answer
+    answer.classList.toggle('active');
+
+    // Toggle the icon rotation
+    icon.classList.toggle('rotate');
+
+    // Close other open answers
+    faqQuestions.forEach((otherQuestion) => {
+      if (otherQuestion !== question) {
+        otherQuestion.nextElementSibling.classList.remove('active');
+        otherQuestion.querySelector('i').classList.remove('rotate');
+      }
+    });
+  });
+});
+
+
+// ======================
+// IMPROVED CHATBOT IMPLEMENTATION
+// ======================
+
+// Configuration
+const CONFIG = {
+  API_KEY: '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',
+  API_ENDPOINT: 'https://openrouter.ai/api/v1/chat/completions',
+  MODEL: 'deepseek/deepseek-r1:free',
+  MAX_TOKENS: 500, // Increased for better responses
+  TYPING_TIMEOUT: 5000,
+  RESPONSE_TIMEOUT: 15000, // Increased timeout
+  CACHE_EXPIRY: 24 * 60 * 60 * 1000
+};
+
+// DOM Elements
+const chatbotMessages = document.getElementById('chatbot-messages');
+const userInput = document.getElementById('user-input');
+const sendButton = document.getElementById('send-button');
+const chatbotContainer = document.querySelector('.chatbot-container');
+const closeChatbot = document.querySelector('.close-chatbot');
+
+// Enhanced system prompt for nutrition focus
+const SYSTEM_PROMPT = `You are NutriBot, an expert nutrition assistant. Always respond with detailed, accurate nutrition information in this format:
+
+**Food/Ingredient Name** is *adjective* for health because:
+1. Fact 1 (e.g., "Rich in healthy fats and vitamin E")
+2. Fact 2 (e.g., "Contains antioxidants that...")
+3. Fact 3 (e.g., "May help with...")
+
+For general health questions, provide:
+- Clear yes/no if appropriate
+- 3 key points
+- Recommended serving size if relevant
+
+Never say "Let me think" or "Could you rephrase" - always provide the best answer you can based on nutrition science.`;
+
+// Initialize chatbot
+function initChatbot() {
+  // Create toggle button if it doesn't exist
+  if (!document.querySelector('.chatbot-toggle')) {
+    const chatbotToggle = document.createElement('button');
+    chatbotToggle.textContent = 'Chat with NutriBot';
+    chatbotToggle.className = 'chatbot-toggle';
+    document.body.appendChild(chatbotToggle);
+
+    chatbotToggle.addEventListener('click', () => {
+      chatbotContainer.style.display = chatbotContainer.style.display === 'block' ? 'none' : 'block';
+      if (chatbotContainer.style.display === 'block') {
+        userInput.focus();
+      }
+    });
+  }
+
+  closeChatbot.addEventListener('click', () => {
+    chatbotContainer.style.display = 'none';
+  });
+
+  // Initial greeting if empty
+  if (chatbotMessages.children.length === 0) {
+    appendMessage("**Hi! I'm NutriBot** 🍏 Ask me anything about food nutrition, ingredients, or healthy eating!", 'bot-message');
+  }
+}
+
+// Typing indicator
+let typingIndicatorTimeout;
+let currentTypingIndicator = null;
+
+function showTypingIndicator() {
+  clearTimeout(typingIndicatorTimeout);
+  
+  if (currentTypingIndicator && currentTypingIndicator.parentNode) {
+    chatbotMessages.removeChild(currentTypingIndicator);
+  }
+  
+  currentTypingIndicator = document.createElement('div');
+  currentTypingIndicator.className = 'message bot-message typing';
+  currentTypingIndicator.innerHTML = '<div class="typing-dots"><span>•</span><span>•</span><span>•</span></div>';
+  chatbotMessages.appendChild(currentTypingIndicator);
+  chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+  
+  typingIndicatorTimeout = setTimeout(() => {
+    if (currentTypingIndicator && currentTypingIndicator.parentNode) {
+      currentTypingIndicator.innerHTML = "Researching the latest nutrition facts...";
+    }
+  }, CONFIG.TYPING_TIMEOUT);
+  
+  return currentTypingIndicator;
+}
+
+function hideTypingIndicator() {
+  clearTimeout(typingIndicatorTimeout);
+  if (currentTypingIndicator && currentTypingIndicator.parentNode) {
+    chatbotMessages.removeChild(currentTypingIndicator);
+    currentTypingIndicator = null;
+  }
+}
+
+// Message formatting with XSS protection
+function appendMessage(text, className) {
+  const messageDiv = document.createElement('div');
+  messageDiv.className = `message ${className}`;
+  
+  // Basic XSS protection and markdown parsing
+  const sanitizedText = text
+    .replace(/</g, '&lt;').replace(/>/g, '&gt;')
+    .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+    .replace(/\*(.*?)\*/g, '<em>$1</em>')
+    .replace(/\n/g, '<br>')
+    .replace(/(^|\n)(\d+\.\s+|\-\s+)(.*?)(?=\n|$)/g, '$1<li>$3</li>');
+  
+  messageDiv.innerHTML = sanitizedText;
+  chatbotMessages.appendChild(messageDiv);
+  chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+  
+  return messageDiv;
+}
+
+// Improved API call with better error handling
+async function getNutritionResponse(message) {
+  const payload = {
+    model: CONFIG.MODEL,
+    messages: [
+      {
+        role: 'system',
+        content: SYSTEM_PROMPT
+      },
+      {
+        role: 'user',
+        content: message
+      }
+    ],
+    max_tokens: CONFIG.MAX_TOKENS,
+    temperature: 0.3, // Lower for more factual responses
+    top_p: 0.9
+  };
+
+  try {
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), CONFIG.RESPONSE_TIMEOUT);
+    
+    const response = await fetch(CONFIG.API_ENDPOINT, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${CONFIG.API_KEY}`,
+        'HTTP-Referer': window.location.href,
+        'X-Title': 'NutriScan'
+      },
+      body: JSON.stringify(payload),
+      signal: controller.signal
+    });
+    
+    clearTimeout(timeoutId);
+
+    if (!response.ok) {
+      throw new Error(`API error: ${response.status}`);
+    }
+
+    const data = await response.json();
+    return data.choices[0]?.message?.content || generateFallbackResponse(message);
+  } catch (error) {
+    console.error('API Error:', error);
+    return generateFallbackResponse(message);
+  }
+}
+
+// Better fallback responses
+function generateFallbackResponse(question) {
+  const nutritionKeywords = ['good', 'healthy', 'benefit', 'nutrition', 'vitamin', 'mineral'];
+  
+  if (nutritionKeywords.some(keyword => question.toLowerCase().includes(keyword))) {
+    return `**Nutrition Alert** ⚠️\nWhile I can't access detailed databases right now, here's general advice:\n` +
+      `- Focus on whole, unprocessed foods\n` +
+      `- Eat a variety of colorful fruits and vegetables\n` +
+      `- Stay hydrated with water`;
+  }
+  
+  return "I'm having temporary trouble accessing nutrition databases. Please try again later!";
+}
+
+// Main message handler
+async function handleUserMessage() {
+  const message = userInput.value.trim();
+  if (!message) return;
+
+  // Display user message
+  appendMessage(message, 'user-message');
+  userInput.value = '';
+  
+  // Show typing indicator
+  showTypingIndicator();
+  
+  try {
+    const botResponse = await getNutritionResponse(message);
+    hideTypingIndicator();
+    appendMessage(botResponse, 'bot-message');
+  } catch (error) {
+    hideTypingIndicator();
+    appendMessage("⚠️ Our nutrition servers are busy - try again in a moment!", 'bot-message error');
+    console.error('Error handling message:', error);
+  }
+}
+
+// Event listeners
+sendButton.addEventListener('click', handleUserMessage);
+userInput.addEventListener('keypress', (e) => {
+  if (e.key === 'Enter') handleUserMessage();
+});
+
+// Initialize the chatbot when DOM is ready
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initChatbot);
+} else {
+  initChatbot();
+}
+  </script>
