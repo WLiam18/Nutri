@@ -235,7 +235,7 @@ document.getElementById('modal-overlay').addEventListener('click', closeModal);
 
 // Analyze ingredients using DeepSeek API
 async function analyzeIngredientsWithDeepSeek(ingredients) {
-  const apiKey = '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';
+  const apiKey = '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';
   const url = 'https://openrouter.ai/api/v1/chat/completions';
 
   // Improved prompt to request clean output
@@ -272,7 +272,7 @@ Example:
         'Authorization': `Bearer ${apiKey}`,
       },
       body: JSON.stringify({
-        model: 'deepseek/deepseek-r1:free',
+        model: 'qwen/qwen-4b',
         messages: [{ role: 'user', content: prompt }],
         response_format: { type: "json_object" }
       }),
